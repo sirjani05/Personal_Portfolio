@@ -119,6 +119,13 @@ const EMAILJS_SERVICE_ID = "service_2a47zj5";
 const EMAILJS_TEMPLATE_ID = "template_liidcx4";
 const EMAILJS_PUBLIC_KEY = "inw2Ky9Pw4Bh0H5hS";
 
+// Initialize EmailJS with public key (recommended for v4)
+if (typeof emailjs !== "undefined") {
+  emailjs.init({
+    publicKey: EMAILJS_PUBLIC_KEY,
+  });
+}
+
 const sendEmail = (e) => {
   e.preventDefault();
 
@@ -132,7 +139,9 @@ const sendEmail = (e) => {
   contactMessage.textContent = "Sending...";
 
   emailjs
-    .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
+    .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, {
+      publicKey: EMAILJS_PUBLIC_KEY,
+    })
     .then(
       () => {
         // Displays confirmation message
@@ -147,7 +156,9 @@ const sendEmail = (e) => {
         contactForm.reset();
       },
       (error) => {
-        contactMessage.textContent = "Message failed to send. Please try again.";
+        const detail =
+          (error && error.text) || "Please try again later.";
+        contactMessage.textContent = "Message failed to send: " + detail;
         contactMessage.style.color = "#ff4d4d";
         console.error("EmailJS error:", error);
       }
