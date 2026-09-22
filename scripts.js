@@ -116,7 +116,7 @@ const contactForm = document.getElementById("contact-form"),
 
 // EmailJS configuration - replace with your own credentials
 const EMAILJS_SERVICE_ID = "service_2a47zj5";
-const EMAILJS_TEMPLATE_ID = "template_liidcx4";
+const EMAILJS_TEMPLATE_ID = "template_xg3zw86";
 const EMAILJS_PUBLIC_KEY = "inw2Ky9Pw4Bh0H5hS";
 
 // Initialize EmailJS with public key (recommended for v4)
